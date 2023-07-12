@@ -1,0 +1,12 @@
+use Illuminate\Support\Facades\DB;
+
+DB::listen(function ($event) {
+    $sql = $event->sql;
+    $bindings = $event->bindings;
+    $time = $event->time;
+
+    // Output the query details
+    echo "Query: {$sql}" . PHP_EOL;
+    echo "Bindings: " . json_encode($bindings) . PHP_EOL;
+    echo "Execution time: {$time} ms" . PHP_EOL;
+});
